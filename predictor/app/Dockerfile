@@ -5,7 +5,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Copia il codice dell'applicazione e il modello all'interno della directory di lavoro
-COPY predictor.py model.pickle ./
+COPY predictor.py model.pickle scaler.pickle ./
 
 # Copia il file requirements.txt all'interno della directory di lavoro
 COPY requirements.txt ./

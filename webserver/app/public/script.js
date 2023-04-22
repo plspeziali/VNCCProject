@@ -12,8 +12,9 @@ function makePrediction(){
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
+            data = JSON.parse(xhr.responseText)
+            mappa = {0: 'A', 1: 'B', 2: 'C', 3: 'D'};
+            document.getElementById("class").value = mappa[parseInt(data[0])];
         }};
 
     let age = document.getElementById("age").value;
@@ -36,12 +37,12 @@ function makePrediction(){
     let broad_jump = document.getElementById("broad_jump").value;
 
     let data = `{
+      "F": ${genderF},
+      "M": ${genderM},
       "age": ${age},
-      "genderM": ${genderM},
-      "genderF": ${genderF},
+      "body_fat": ${body_fat},
       "height": ${height},
       "weight": ${weight},
-      "body_fat": ${body_fat},
       "diastolic": ${diastolic},
       "systolic": ${systolic},
       "grip_force": ${grip_force},

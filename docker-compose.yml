@@ -1,5 +1,6 @@
 version: '3.8'
 services:
+
   webserver:
     build:
       context: ./webserver/app/
@@ -8,6 +9,9 @@ services:
       - "8080:8080"
     networks:
       - app_network
+    depends_on:
+      - db
+
   predictor:
     build:
       context: ./predictor/app/
@@ -16,6 +20,42 @@ services:
       - "5000:5000"
     networks:
       - app_network
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: body-performance
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./database/bodyPerformance.csv:/tmp/bodyPerformance.csv
+    networks:
+      - app_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_ADDRESS: 0.0.0.0
+      PGADMIN_DEFAULT_SERVER: db
+      PGADMIN_DEFAULT_SERVER_PORT: 5432
+      PGADMIN_SKIP_FIRST_LOGIN: 'True'
+    ports:
+      - "8081:80"
+    volumes:
+      - ./database/bodyPerformance.csv:/tmp/bodyPerformance.csv
+    networks:
+      - app_network
 networks:
   app_network:
     driver: bridge
+
+volumes:
+  postgres_data:
