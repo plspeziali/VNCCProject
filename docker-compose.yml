@@ -31,6 +31,8 @@ services:
     build:
       context: ./training/app/
       dockerfile: ./Dockerfile
+    ports:
+      - "3002:3002"
     networks:
       - app_network
     depends_on:

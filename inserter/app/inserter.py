@@ -1,6 +1,7 @@
 from flask import Flask, request
 import psycopg2
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -30,6 +31,11 @@ def inserisci_dati():
     cur.close()
     conn.commit()
     conn.close()
+
+    
+    response = requests.get('http://localhost:3002/train')
+    print(response.text)
+
 
     return "Dati inseriti con successo nel database!"
 

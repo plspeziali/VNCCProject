@@ -13,5 +13,8 @@ COPY requirements.txt ./
 # Install the required packages
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Esponi la porta 5000 per la comunicazione dell'applicazione
+EXPOSE 3002
+
 # Run the command to train the model
 CMD ["python", "training.py"]
