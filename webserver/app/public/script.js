@@ -37,16 +37,16 @@ function makePrediction(){
     let broad_jump = document.getElementById("broad_jump").value;
 
     let data = `{
-      "F": ${genderF},
-      "M": ${genderM},
+      "gender_F": ${genderF},
+      "gender_M": ${genderM},
       "age": ${age},
       "body_fat": ${body_fat},
       "height": ${height},
       "weight": ${weight},
       "diastolic": ${diastolic},
       "systolic": ${systolic},
-      "grip_force": ${grip_force},
       "bend_forward": ${bend_forward},
+      "grip_force": ${grip_force},
       "sit_ups": ${sit_ups},
       "broad_jump": ${broad_jump}
     }`;

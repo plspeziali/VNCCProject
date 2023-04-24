@@ -8,14 +8,15 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-with open('model.pickle', 'rb') as f:
-    model = pickle.load(f)
-
-with open('scaler.pickle', 'rb') as f:
-    scaler = pickle.load(f)
-
 @app.route('/predictor', methods=['POST'])
 def effettua_predizioni():
+
+    with open('./data/model.pickle', 'rb') as f:
+        model = pickle.load(f)
+
+    with open('./data/scaler.pickle', 'rb') as f:
+        scaler = pickle.load(f)
+
     # Riceve la richiesta POST contenente il JSON con i dati
     dati_json = request.get_json()
 
@@ -37,6 +38,12 @@ def effettua_predizioni():
     # df = df.rename(columns={'x0_M': 'M'})
 
     # return df.head().to_json()
+
+    #Exploratory Data Analysis
+    print(df.head())
+    print(df.shape)
+    print(df.describe())
+    print(df.info())
 
     # Standardization
     df = scaler.transform(df)
