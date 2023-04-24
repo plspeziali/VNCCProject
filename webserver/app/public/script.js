@@ -1,4 +1,4 @@
-// const fetch = window.fetch;
+const Client = require('../index.js');
 
 function makePrediction(){
 
@@ -52,6 +52,52 @@ function makePrediction(){
     }`;
 
     xhr.send(data);
+
+}
+
+function sendRecord(){
+
+    const client = new Client({
+        user: 'admin',
+        host: 'db',
+        database: 'body-performance',
+        password: 'admin',
+        port: 5432,
+    });
+    
+    client.connect();
+
+    let age = document.getElementById("age").value;
+    let gender;
+    if(document.getElementById('genderM').checked) {
+        gender = 'M';
+    }else if(document.getElementById('genderF').checked) {
+        gender = 'F';
+    }
+    let height = document.getElementById("height").value;
+    let weight = document.getElementById("weight").value;
+    let body_fat = document.getElementById("body_fat").value;
+    let diastolic = document.getElementById("diastolic").value;
+    let systolic = document.getElementById("systolic").value;
+    let bend_forward = document.getElementById("bend_forward").value;
+    let grip_force = document.getElementById("grip_force").value;
+    let sit_ups = document.getElementById("sit_ups").value;
+    let broad_jump = document.getElementById("broad_jump").value;
+    let classValue = document.getElementById("class").value;
+
+    const query = `INSERT INTO body_performance` +
+    + `VALUES (${age}, ${gender}, ${height}, ${weight}, ${body_fat}, ${diastolic}, ${systolic}, ${bend_forward}, ${grip_force}, ${sit_ups}, ${broad_jump}, ${classValue})`;
+
+    client.query(query, (err, res) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log(res.rows);
+    });
+    
+    client.end();
+
 
 }
 
