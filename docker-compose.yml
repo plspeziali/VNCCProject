@@ -38,6 +38,17 @@ services:
     volumes:
       - model_data:/app/data
 
+  inserter:
+    build:
+      context: ./inserter/app/
+      dockerfile: ./Dockerfile
+    ports:
+      - "3001:3001"
+    networks:
+      - app_network
+    depends_on:
+      - db
+
   db:
     image: postgres
     restart: always

@@ -85,10 +85,10 @@ function sendRecord(){
     let grip_force = document.getElementById("grip_force").value;
     let sit_ups = document.getElementById("sit_ups").value;
     let broad_jump = document.getElementById("broad_jump").value;
-    let classValue = document.getElementById("class").value;
+    let class_value = document.getElementById("class").value;
 
     let data = `{
-        "gender": '${gender}',
+        "gender": "${gender}",
         "age": ${age},
         "body_fat": ${body_fat},
         "height": ${height},
@@ -99,8 +99,10 @@ function sendRecord(){
         "grip_force": ${grip_force},
         "sit_ups": ${sit_ups},
         "broad_jump": ${broad_jump},
-        "class": '${classValue}'
+        "class_value": "${class_value}"
       }`;
+
+      console.log(data);
   
       xhr.send(data);
     
