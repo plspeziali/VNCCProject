@@ -1,5 +1,3 @@
-const Client = require('../index.js');
-
 function makePrediction(){
 
     let xhr = new XMLHttpRequest();
@@ -57,15 +55,19 @@ function makePrediction(){
 
 function sendRecord(){
 
-    const client = new Client({
-        user: 'admin',
-        host: 'db',
-        database: 'body-performance',
-        password: 'admin',
-        port: 5432,
-    });
-    
-    client.connect();
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:3001/query");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            data = JSON.parse(xhr.responseText)
+            console.log(data);
+        }};
 
     let age = document.getElementById("age").value;
     let gender;
@@ -85,19 +87,23 @@ function sendRecord(){
     let broad_jump = document.getElementById("broad_jump").value;
     let classValue = document.getElementById("class").value;
 
-    const query = `INSERT INTO body_performance` +
-    + `VALUES (${age}, ${gender}, ${height}, ${weight}, ${body_fat}, ${diastolic}, ${systolic}, ${bend_forward}, ${grip_force}, ${sit_ups}, ${broad_jump}, ${classValue})`;
-
-    client.query(query, (err, res) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log(res.rows);
-    });
+    let data = `{
+        "gender": '${gender}',
+        "age": ${age},
+        "body_fat": ${body_fat},
+        "height": ${height},
+        "weight": ${weight},
+        "diastolic": ${diastolic},
+        "systolic": ${systolic},
+        "bend_forward": ${bend_forward},
+        "grip_force": ${grip_force},
+        "sit_ups": ${sit_ups},
+        "broad_jump": ${broad_jump},
+        "class": '${classValue}'
+      }`;
+  
+      xhr.send(data);
     
-    client.end();
-
 
 }
 

@@ -12,7 +12,7 @@ CREATE TABLE body_performance (
   broad_jump FLOAT,
   class varchar(1),
 
-  PRIMARY KEY (age, gender, height, weight, body_fat, diastolic, systolic, bend_forward, grip_force, sit_ups, broad_jump, class)
+  PRIMARY KEY (age, gender, height, weight, body_fat, diastolic, systolic, bend_forward, grip_force, sit_ups, broad_jump)
 );
 
 CREATE TEMPORARY TABLE csv_table (

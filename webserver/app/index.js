@@ -1,6 +1,5 @@
 const express = require('express');
 const serveStatic = require('serve-static');
-const pg = require('pg');
 const app = express();
 const cors = require('cors');
 app.use(cors({
@@ -15,6 +14,3 @@ app.use(serveStatic('public')); // 'public' è la cartella contenente i file sta
 app.listen(8080, () => {
     console.log('Server avviato sulla porta 8080');
 });
-
-
-module.exports = pg.Client;
