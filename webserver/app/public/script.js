@@ -63,7 +63,7 @@ function sendRecord(){
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 
-    document.getElementById("result").innerHTML = "Invio della query...";
+    document.getElementById("result").innerHTML = "Sending query...";
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {

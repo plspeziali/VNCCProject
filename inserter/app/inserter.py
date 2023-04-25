@@ -38,9 +38,9 @@ def inserisci_dati():
         print(response.text)
 
 
-        return "Dati inseriti con successo nel database!"
+        return "Data successfully inserted into the database!"
     except:
-        return "Errore nell'inserimento nel database!"
+        return "Error in inserting data in the database!"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3001)
