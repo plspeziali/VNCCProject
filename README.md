@@ -28,20 +28,20 @@ To predict body performance, fill out the form on the home page with your person
 
 You can also access the PgAdmin web interface by visiting http://localhost:8081 in your web browser. The default login credentials are:
 
-Email: admin@admin.com
-Password: admin
+- Email: admin@admin.com
+- Password: admin
 
 ## Docker Compose Configuration
 
 This application consists of the following Docker containers:
 
-- webserver: the web application
-- predictor: the machine learning prediction service
-- training: the machine learning training service
-- inserter: the service responsible for inserting data into the database
-- initializer: the service responsible for initializing the database with sample data
-- db: the PostgreSQL database
-- pgadmin: the PgAdmin web interface
+- **webserver**: the web application
+- **predictor**: the machine learning prediction service
+- **training**: the machine learning training service
+- **inserter**: the service responsible for inserting new records into the database
+- **initializer**: the service responsible for initializing the database with the training data and query the training service for the first time
+- **db**: the PostgreSQL database
+- **pgadmin**: the PgAdmin web interface
 
 ### Ports
 
