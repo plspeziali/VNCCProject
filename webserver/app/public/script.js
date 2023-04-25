@@ -63,10 +63,12 @@ function sendRecord(){
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 
+    document.getElementById("result").innerHTML = "Invio della query...";
+
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            data = JSON.parse(xhr.responseText)
-            console.log(data);
+            data = xhr.responseText
+            document.getElementById("result").innerHTML = data;
         }};
 
     let age = document.getElementById("age").value;

@@ -51,6 +51,15 @@ services:
     depends_on:
       - db
 
+  initializer:
+    build:
+      context: ./initializer/app/
+      dockerfile: ./Dockerfile
+    networks:
+      - app_network
+    depends_on:
+      - db
+
   db:
     image: postgres
     restart: always
@@ -62,7 +71,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-      - ./database/bodyPerformance.csv:/tmp/bodyPerformance.csv
+      - ./initializer/app/bodyPerformance.csv:/tmp/bodyPerformance.csv
     networks:
       - app_network
 
@@ -77,8 +86,6 @@ services:
       PGADMIN_SKIP_FIRST_LOGIN: 'True'
     ports:
       - "8081:80"
-    volumes:
-      - ./database/bodyPerformance.csv:/tmp/bodyPerformance.csv
     networks:
       - app_network
 networks:
