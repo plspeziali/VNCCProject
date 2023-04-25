@@ -15,22 +15,12 @@ To run this application, you must have Docker and Docker Compose installed on yo
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-Clone this repository to your local machine:
+To install the application navigate into the application root directory and execute the script:
 
 ```bash
-git clone https://github.com/tommasomartinelli/Body-Performance-Predictor.git
+chmod u+x init.sh
+./init.sh
 ```
-
-## Setup Instructions
-
-To run the application, follow these steps:
-
-1. Install Docker and Docker Compose
-2. Clone the repository: `git clone https://github.com/tommasomartinelli/Body-Performance-Prediction-App.git`
-3. Navigate to the cloned directory: `cd Body-Performance-Prediction-App`
-4. Run Docker Compose: `docker-compose up`
-
-Once the initialization is complete, you can access the web application by visiting http://localhost:8080 in your web browser.
 
 ## Usage
 
