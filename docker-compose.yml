@@ -8,11 +8,9 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - app_network
+      - app-network
     depends_on:
       - db
-    volumes:
-      - ./model:/app/model
 
   predictor:
     build:
@@ -21,9 +19,9 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - app_network
+      - app-network
     volumes:
-      - model_data:/app/data
+      - model-data:/app/data
 
   training:
     build:
@@ -32,11 +30,11 @@ services:
     ports:
       - "3002:3002"
     networks:
-      - app_network
+      - app-network
     depends_on:
       - db
     volumes:
-      - model_data:/app/data
+      - model-data:/app/data
 
   inserter:
     build:
@@ -45,7 +43,7 @@ services:
     ports:
       - "3001:3001"
     networks:
-      - app_network
+      - app-network
     depends_on:
       - db
 
@@ -54,7 +52,7 @@ services:
       context: ./initializer/app/
       dockerfile: ./Dockerfile
     networks:
-      - app_network
+      - app-network
     depends_on:
       - db
 
@@ -71,7 +69,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
       - ./initializer/app/bodyPerformance.csv:/tmp/bodyPerformance.csv
     networks:
-      - app_network
+      - app-network
 
   pgadmin:
     image: dpage/pgadmin4
@@ -85,11 +83,11 @@ services:
     ports:
       - "8081:80"
     networks:
-      - app_network
+      - app-network
 networks:
-  app_network:
+  app-network:
     driver: bridge
 
 volumes:
-  postgres_data:
-  model_data:
+  postgres-data:
+  model-data:

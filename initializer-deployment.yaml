@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\pspez\Documents\Progetti\VNCCProject\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: initializer
+  name: initializer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: initializer
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\pspez\Documents\Progetti\VNCCProject\kompose.exe convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/app-network: "true"
+        io.kompose.service: initializer
+    spec:
+      containers:
+        - image: initializer
+          name: initializer
+          imagePullPolicy: Never
+          resources: {}
+      restartPolicy: Always
+status: {}
