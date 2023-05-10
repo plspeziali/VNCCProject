@@ -41,14 +41,14 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data/
               name: postgres-data
-            - mountPath: /tmp/bodyPerformance.csv
-              name: db-claim1
+            - mountPath: /tmp/
+              name: config-volume
       restartPolicy: Always
       volumes:
         - name: postgres-data
           persistentVolumeClaim:
             claimName: postgres-data
-        - name: db-claim1
-          persistentVolumeClaim:
-            claimName: db-claim1
+        - name: config-volume
+          configMap:
+            name: body-performance-configmap
 status: {}
