@@ -29,5 +29,5 @@ spec:
           name: initializer
           imagePullPolicy: Never
           resources: {}
-      restartPolicy: Always
+      restartPolicy: Never
 status: {}
