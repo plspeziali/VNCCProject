@@ -30,7 +30,7 @@ except:
         with conn.cursor() as cur:
             cur.execute(sql)
             conn.commit()
-            response = requests.get('http://training:3002/train')
+            response = requests.get('http://training:3002/')
 
 
 cur.close()

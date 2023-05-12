@@ -31,16 +31,4 @@ kubectl apply -f webserver/webserver-service.yaml
 
 sleep 60
 
-kubectl port-forward service/pgadmin 8081:8081 &
-
-sleep 10
-
-kubectl port-forward service/webserver 80:8080 &
-
-sleep 10
-
-kubectl port-forward service/inserter 3001:3001 &
-
-sleep 10
-
-kubectl port-forward service/predictor 5000:5000 &
+kubectl port-forward service/webserver 80:8080
