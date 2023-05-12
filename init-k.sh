@@ -29,6 +29,5 @@ kubectl apply -f training/training-service.yaml
 kubectl apply -f webserver/webserver-deployment.yaml
 kubectl apply -f webserver/webserver-service.yaml
 
-sleep 60
 
 kubectl port-forward service/webserver 80:8080

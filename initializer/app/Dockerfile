@@ -11,9 +11,6 @@ COPY initializer.py ./
 COPY requirements.txt ./
 
 # Copia il file requirements.txt all'interno della directory di lavoro
-COPY bodyPerformance.csv ./
-
-# Copia il file requirements.txt all'interno della directory di lavoro
 COPY init.sql ./
 
 # Installa le dipendenze dell'applicazione
