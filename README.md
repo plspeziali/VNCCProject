@@ -22,6 +22,24 @@ chmod u+x init.sh
 ./init.sh
 ```
 
+If you prefer to use Kubernetes instead of Docker Compose,
+execute this:
+
+```bash
+chmod u+x init-k.sh
+./init-k.sh
+```
+
+and then, on two different terminals, write the following:
+
+```bash
+kubectl port-forward service/webserver 80:8080
+```
+and
+```bash
+kubectl port-forward service/pgadmin 8081:8081
+```
+
 ## Usage
 
 To predict body performance, fill out the form on the home page with your personal data and click "Predict". The application will use machine learning to calculate your body performance score. You may also add more data, the model will automatically train again.
@@ -31,7 +49,7 @@ You can also access the PgAdmin web interface by visiting http://localhost:8081 
 - Email: admin@admin.com
 - Password: admin
 
-## Docker Compose Configuration
+## Docker Containers Configuration
 
 This application consists of the following Docker containers:
 
@@ -47,7 +65,8 @@ This application consists of the following Docker containers:
 
 The application uses the following ports:
 
-- 8080: the web application
+- 8080: the web application (when using Docker Compose)
+- 80: the web application (when using Kubernetes)
 - 5000: the prediction service
 - 3002: the training service
 - 3001: the inserter service

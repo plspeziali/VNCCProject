@@ -22,6 +22,7 @@
 \usepackage{longtable}
 \usepackage{etaremune}
 \usepackage{booktabs}
+\usepackage{hyperref}
 \usepackage{subfig}
 \usepackage[edges]{forest}
 \definecolor{folderbg}{RGB}{124,166,198}
@@ -269,7 +270,9 @@ la qualità della sua performance fisica, indicata da una lettera:
 \end{table}
 
 La classificazione avviene tramite un modello di machine learning
-addestrato utilizzando il dataset "Body performance"[metti riferimento].
+addestrato utilizzando il dataset ``Body performance Data"
+\footnote{\url{https://www.kaggle.com/datasets/kukuroo3/body-performance-data}}
+di Kaggle.
 
 In aggiunta, l'applicazione consente di inserire nuovi dati di training,
 che vengono salvati su un database PostgreSQL insieme al dataset originario.
@@ -280,6 +283,9 @@ tutte le sue componenti sono state incapsulate in container Docker.
 La gestione dei container è stata affidata,
 nella sua seconda implementazione,
 all'orchestratore Kubernetes.
+
+L'ultima versione dell'applicativo è scaricabile dalla
+\href{https://github.com/plspeziali/VNCCProject}{repository di GitHub}.
 
 \chapter{Container}
 
