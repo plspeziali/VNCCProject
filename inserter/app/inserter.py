@@ -6,7 +6,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/query', methods=['POST'])
+@app.route('/', methods=['POST'])
 def inserisci_dati():
     try:
         age = request.json['age']
@@ -34,7 +34,7 @@ def inserisci_dati():
         conn.close()
 
         
-        response = requests.get('http://training:3002/train')
+        response = requests.get('http://training:3002/')
         print(response.text)
 
 

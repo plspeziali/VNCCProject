@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: initializer-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: initializer
+        image: initializer
+        imagePullPolicy: Never
+        command: ["python", "initializer.py"]
+      restartPolicy: Never
+  backoffLimit: 4

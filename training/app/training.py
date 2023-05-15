@@ -11,7 +11,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/train', methods=['GET'])
+@app.route('/', methods=['GET'])
 def effettua_training():
     #query to extract database
     conn = psycopg2.connect(database="body-performance",host="db", user="admin", password="admin", port="5432")

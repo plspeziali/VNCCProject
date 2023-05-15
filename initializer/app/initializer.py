@@ -2,11 +2,12 @@ import psycopg2
 import os
 import time
 import requests
+import socket
 
 time.sleep(10)
 
 # Configurazione della connessione al database
-conn = psycopg2.connect(database="body-performance",host="db", user="admin", password="admin", port="5432")
+conn = psycopg2.connect(database="body-performance",host=socket.gethostbyname("db"), user="admin", password="admin", port="5432")
 
 # Nome della tabella da controllare
 table = "body_performance"
@@ -29,7 +30,7 @@ except:
         with conn.cursor() as cur:
             cur.execute(sql)
             conn.commit()
-            response = requests.get('http://training:3002/train')
+            response = requests.get('http://training:3002/')
 
 
 cur.close()

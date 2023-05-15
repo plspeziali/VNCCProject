@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: webserver
+  name: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: webserver
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/app-network: "true"
+        io.kompose.service: webserver
+    spec:
+      containers:
+        - image: webserver
+          name: webserver
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}

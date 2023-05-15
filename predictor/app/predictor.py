@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/predictor', methods=['POST'])
+@app.route('/', methods=['POST'])
 def effettua_predizioni():
 
     with open('./data/model.pickle', 'rb') as f:

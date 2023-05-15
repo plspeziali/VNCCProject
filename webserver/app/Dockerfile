@@ -1,6 +1,12 @@
-FROM node:14-alpine
+FROM python:3.9
+
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY .. .
-CMD ["node", "index.js"]
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["python", "main.py"]
