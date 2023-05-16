@@ -6,7 +6,7 @@ services:
       context: ./webserver/app/
       dockerfile: ./Dockerfile
     ports:
-      - "8080:8080"
+      - "80:8080"
     networks:
       - app-network
     depends_on:
@@ -66,8 +66,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
-      - ./initializer/app/bodyPerformance.csv:/tmp/bodyPerformance.csv
+      - postgres-data:/var/lib/postgresql/data/
+      - ./db/bodyPerformance.csv:/tmp/bodyPerformance.csv
     networks:
       - app-network
 

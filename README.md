@@ -65,8 +65,7 @@ This application consists of the following Docker containers:
 
 The application uses the following ports:
 
-- 8080: the web application (when using Docker Compose)
-- 80: the web application (when using Kubernetes)
+- 80: the web application
 - 5000: the prediction service
 - 3002: the training service
 - 3001: the inserter service
