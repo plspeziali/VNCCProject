@@ -470,10 +470,16 @@ container tramite il Docker Compose.
 
 La versione più recente dell'applicazione è stata orchestrata con
 Kubernetes, uno strumento più completo e complesso
-rispetto a Docker Compose. Sono stati creati oggetti Deployment,
+rispetto a Docker Compose. 
+
+Mediante l'utilizzo di uno strumento chiamato
+Kompose\footnote[2]{\url{https://kompose.io/}},
+software adibito ad agevolare la migrazione da Docker Compose a Kubernetes,
+sono stati creati oggetti Deployment,
 uno per ogni container Docker, ad eccezione di initializer,
 che è stato realizzato con un Job poiché deve essere eseguito
 solo una volta e non deve essere riavviato.
+
 Sono stati definiti anche dei Service,
 uno per ogni Deployment, per consentire
 la connettività tra Pod nella rete interna di Kubernetes
@@ -490,6 +496,26 @@ L'intera applicazione è testabile grazie a un file \codeword{init-k.sh},
 che contiene una serie di comandi per creare e configurare gli
 oggetti Kubernetes utilizzando i loro file
 ed esegue le operazioni di port forwarding.
+
+L'attuale versione dell'applicazione non trae particolare
+beneficio dalla migrazione in Kubernetes
+in quanto il comportamento e l'interazione
+tra container non sono stati modificati.
+Possiamo però pensare ad alcuni
+ulteriori sviluppi che sfruttano le funzionalità
+di questo orchestratore:
+\begin{itemize}
+  \item Utilizzo dell'oggetto \textbf{CronJob} di Kubernetes
+  per avviare il training ad orari prestabiliti
+  anziché allenarlo ad ogni inserimento.
+  In questo modo si riduce il carico di lavoro superfluo
+  che questo comportamento va inevitabilmente ad introdurre.
+  \item Utilizzo di oggetti \textbf{Secret} per implementare meccanismi di
+  sicurezza nell'autenticazione al database.
+  \item Utilizzo dell'\textbf{HPA} sul Pod che contiene il Predictor
+  in modo da aumentare il numero di serventi paralleli per questa funzione.
+\end{itemize}
+
 
 
 \hyphenpenalty=0
